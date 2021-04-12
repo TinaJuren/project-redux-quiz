@@ -2,9 +2,18 @@ import { createSlice } from '@reduxjs/toolkit'
 
 // Change these to your own questions!
 const questions = [
-  { id: 1, questionText: 'Who set the Olympic record for the 100m dash in 2012?', options: ['Usain Bolt', 'Justin Gatlin', 'Tyson Gay', 'Asafa Powell'], correctAnswerIndex: 0 },
-  { id: 2, questionText: 'When was Michael Phelps last named male World Swimmer of the Year?', options: ['2012', '2014', '2016', '2018'], correctAnswerIndex: 2 }
+  { id: 1, questionText: 'Where did the Foxes first meet?', options: ['a) At a bar.', 'b) At a skating contest.', 'c) At Technigos Frontend bootcamp.', 'd) At Danielas parents in Mexico.'], correctAnswerIndex: 2 },
+  { id: 2, questionText: 'Which is Therese’s favourite island in the world?', options: ['a) Öland', 'b) Mallorca', 'c) Menorca', 'd) Fuerteventura'], correctAnswerIndex: 2 },
+  { id: 3, questionText: 'What’s been Daniela’s fav concert? ', options: ['a) Björk', 'b) Kings of Convenience', 'c) Radiohead', 'd) The Cure'], correctAnswerIndex: 0 },
+  { id: 4, questionText: 'What is Tina’s favorite coffee drink? ', options: ['a) Black', 'b) Latte', 'c) Espresso', 'd) Cappuccino'], correctAnswerIndex: 0 },
+  { id: 5, questionText:  'What is Estefanía’s favorite Saturday night plan?', options: ['a) Watching Netflix', 'b) Dancing at home to a good Spotify playlist' , 'c) Sleeping', 'd) Trying a new recipe'], correctAnswerIndex: 1 }
 ]
+
+
+
+ 
+
+
 
 const initialState = {
   questions,
