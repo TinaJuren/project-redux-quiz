@@ -5,9 +5,42 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+   background-color: pink;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+
+
+header {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.header-image {
+  width: 50%;
+  height: 50%;
+}
+
+.question-image {
+  max-width: 500px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 5px, solid #544147;
+}
+
+footer {
+  text-align: center;
+  background-color: #544147;
+  width: 100%;
+  padding: 20px 0;
+  color: white;
+  margin-bottom: 40px;
+
 }

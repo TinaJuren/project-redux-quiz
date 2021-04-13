@@ -2,9 +2,16 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { quiz } from '../reducers/quiz'
 
+import { Summary } from 'components/Summary'
+import { Header } from 'components/Header'
+import { Footer } from 'components/Footer'
+import caturday from 'assets/caturday.jpg'
+import coffee from 'assets/coffee.jpg'
+import island from 'assets/island.jpg'
+
 export const CurrentQuestion = () => {
   const question = useSelector((state) => state.quiz.questions[state.quiz.currentQuestionIndex])
-  const answer = useSelector((state) => state.quiz.answers.find((a) => a.questionId === question.id))
+  const answer = useSelector((state) => state.quiz.answers.filter((a) => a.isCorrect))
   const quizOver = useSelector((state) => state.quiz.quizOver);
 
  const dispatch = useDispatch();
@@ -19,10 +26,26 @@ export const CurrentQuestion = () => {
 
  const checkAnswer = () => {
    if (answer.isCorrect) {
-     return <h2>It´s correct</h2>
+     return 'correct'
    }
   else {
-    return <h2>Sorry, try again, that was wrong.</h2>
+    return 'Sorry, that´s wrong'
+  }
+ }
+
+ //An image selector that would show the image according to the question we are on
+
+ const imageSelector = () => {
+  if (question.id === 1) {
+    return coffee
+  } else if (question.id === 2) {
+    return island
+  } else if (question.id === 3) {
+    return coffee
+  } else if (question.id === 4) {
+    return coffee
+  } else if (question.id === 5) {
+    return caturday
   }
  }
 
@@ -31,10 +54,17 @@ export const CurrentQuestion = () => {
     return <h1>Oh no! I could not find the current question!</h1>
   }
 
+  if (quizOver === true) {
+    return <Summary />
+  }
+
   return (
+    <>
+    <Header/>
     <section className="main-container">
       <div className="question-wrapper">
         <h1>Question: {question.questionText}</h1>
+        <img className="question-image" src={imageSelector()} alt="question pic" />
       </div>
       <div className="answer-wrapper">
         {question.options.map((option, index) => {
@@ -47,16 +77,26 @@ export const CurrentQuestion = () => {
                 id={index}
                 value={index}
                 type="radio"
-                onChange={submitAnswer(question.id, index)} 
+                onChange={() => { submitAnswer(question.id, index) }}
               />
               {option}
             </label>
           </fieldset>  
         )})}
       </div>
+      {checkAnswer()}
+
+  
+
+        <p>Question {question.id}/5</p>
+       
+        
       <button onClick={() => dispatch(quiz.actions.goToNextQuestion())}></button>
       Go to next Question
     </section>
+    <Footer />
+    </>
   )
+  
 }
 
