@@ -13,25 +13,20 @@ import concert from 'assets/concert.jpg'
 
 export const CurrentQuestion = () => {
   const question = useSelector((state) => state.quiz.questions[state.quiz.currentQuestionIndex])
-  const answer = useSelector((state) => state.quiz.answers.filter((a) => a.isCorrect))
+  const selectedAnswer = useSelector((state) => state.quiz.answers[state.quiz.currentQuestionIndex]);
   const quizOver = useSelector((state) => state.quiz.quizOver);
 
  const dispatch = useDispatch();
 
- const submitAnswer = (id, index) => {
-   dispatch(quiz.actions.submitAnswer({
-     questionId:id,
-     answerId:index
-
-   }))
- }
-
  const checkAnswer = () => {
-   if (answer.isCorrect) {
-     return 'correct'
+   if (selectedAnswer === undefined) {
+     return ""
+   }
+   else if (selectedAnswer.isCorrect) {
+     return 'That is correct!'
    }
   else {
-    return 'Sorry, that´s wrong'
+    return 'Sorry, that is wrong'
   }
  }
 
@@ -50,7 +45,6 @@ export const CurrentQuestion = () => {
     return caturday
   }
  }
-
 
   if (!question) {
     return <h1>Oh no! I could not find the current question!</h1>
@@ -75,24 +69,24 @@ export const CurrentQuestion = () => {
           
             <label key={index} htmlFor={index}>
               <input 
+                disabled={selectedAnswer !== undefined}
                 name="answer"
                 id={index}
                 value={index}
                 type="radio"
-                onChange={() => { checkAnswer(question.id, index) }}
+                //onChange={() => { checkAnswer(question.id, index) }}
+                onChange = {() => 
+                  dispatch(quiz.actions.submitAnswer({ questionId: question.id, answerIndex: index }))}
+
+
               />
               {option}
             </label>
           
         )})}
       </div>
-      
-
-  
-
-        <p>Question {question.id}/5</p>
-       
-        
+      <p>{checkAnswer()}</p>
+      <p>Question {question.id}/5</p>     
       <button className="next-question-button" onClick={() => dispatch(quiz.actions.goToNextQuestion())}>NEXT</button>
     </section>
     <Footer />
@@ -100,4 +94,3 @@ export const CurrentQuestion = () => {
   )
   
 }
-

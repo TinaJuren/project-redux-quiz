@@ -13,8 +13,6 @@ code {
     monospace;
 }
 
-
-
 header {
   display: flex;
   justify-content: center;
@@ -42,6 +40,8 @@ header {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: 20px 0;
+  width: 100%;
 }
 
 .question-image {
@@ -67,16 +67,22 @@ header {
 }
 
 .next-question-button:hover {
-  background-color: white;
-  color: orange;
+  background-color: orange;
+  color: white;
+}
+
+.next-question-button:focus {
+  outline: none;
 }
 
 .summary-section {
+  margin-top: 50px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   color: #544147;
+  font-size: 30px;
 }
 
 .restart-button {
@@ -91,8 +97,8 @@ header {
 }
 
 .restart-button:hover {
-  background-color: white;
-  color: orange;
+  background-color: orange;
+  color: white;
 }
 
 footer {
@@ -102,5 +108,4 @@ footer {
   padding: 20px 0;
   color: white;
   margin-bottom: 40px;
-
 }
