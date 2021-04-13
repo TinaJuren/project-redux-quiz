@@ -8,6 +8,8 @@ import { Footer } from 'components/Footer'
 import caturday from 'assets/caturday.jpg'
 import coffee from 'assets/coffee.jpg'
 import island from 'assets/island.jpg'
+import question1 from 'assets/question1.jpg'
+import concert from 'assets/concert.jpg'
 
 export const CurrentQuestion = () => {
   const question = useSelector((state) => state.quiz.questions[state.quiz.currentQuestionIndex])
@@ -37,11 +39,11 @@ export const CurrentQuestion = () => {
 
  const imageSelector = () => {
   if (question.id === 1) {
-    return coffee
+    return question1
   } else if (question.id === 2) {
     return island
   } else if (question.id === 3) {
-    return coffee
+    return concert
   } else if (question.id === 4) {
     return coffee
   } else if (question.id === 5) {
@@ -70,29 +72,28 @@ export const CurrentQuestion = () => {
         {question.options.map((option, index) => {
           return (
           
-          <fieldset>
+          
             <label key={index} htmlFor={index}>
               <input 
                 name="answer"
                 id={index}
                 value={index}
                 type="radio"
-                onChange={() => { submitAnswer(question.id, index) }}
+                onChange={() => { checkAnswer(question.id, index) }}
               />
               {option}
             </label>
-          </fieldset>  
+          
         )})}
       </div>
-      {checkAnswer()}
+      
 
   
 
         <p>Question {question.id}/5</p>
        
         
-      <button onClick={() => dispatch(quiz.actions.goToNextQuestion())}></button>
-      Go to next Question
+      <button className="next-question-button" onClick={() => dispatch(quiz.actions.goToNextQuestion())}>NEXT</button>
     </section>
     <Footer />
     </>
